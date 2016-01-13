@@ -93,6 +93,7 @@ public class MarkovTextGeneratorGrader {
             return;
         } catch (Exception e) {
             System.out.println("Error during runtime: " + e);
+            e.printStackTrace();
         }
     }
 }
