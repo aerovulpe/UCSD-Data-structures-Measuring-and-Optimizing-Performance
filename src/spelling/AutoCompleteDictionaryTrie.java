@@ -154,5 +154,4 @@ public class AutoCompleteDictionaryTrie implements Dictionary, AutoComplete {
 
 		return findTrieNode(parent.getChild(key.charAt(0)), key.substring(1));
 	}
-
 }
