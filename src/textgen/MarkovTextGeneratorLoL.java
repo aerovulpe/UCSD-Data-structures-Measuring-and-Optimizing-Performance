@@ -78,13 +78,13 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 
 		String currentWord = starter;
 		String output = new String(currentWord);
-		int currentWordIdx = 0;
+		int currentWordCnt = 0;
 
-		while (currentWordIdx < numWords) {
+		while (currentWordCnt < numWords) {
 			String randWord = findListNode(currentWord).getRandomNextWord(rnGenerator);
 			output += randWord + " ";
 			currentWord = randWord;
-			currentWordIdx++;
+			currentWordCnt++;
 		}
 
 		return output;

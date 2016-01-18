@@ -53,7 +53,7 @@ class TrieNode {
 			return null;
 		}
 		
-		TrieNode next = new TrieNode(text + c.toString());
+		TrieNode next = new TrieNode(text + c);
 		children.put(c, next);
 		return next;
 	}
