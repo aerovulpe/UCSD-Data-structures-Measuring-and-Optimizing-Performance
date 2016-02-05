@@ -150,7 +150,7 @@ public class NearbyWords implements SpellingSuggest {
 	public List<String> suggestions(String word, int numSuggestions) {
 
 		// initial variables
-		int maxTries = THRESHOLD;
+		int triesCounter = THRESHOLD;
 		Queue<String> queue = new LinkedList<String>(); // String to explore
 		HashSet<String> visited = new HashSet<String>(); // to avoid exploring
 															// the same
@@ -164,14 +164,14 @@ public class NearbyWords implements SpellingSuggest {
 
 		// Implement the remainder of this method, see assignment for
 		// algorithm
-		while (!queue.isEmpty() && retList.size() < numSuggestions && maxTries > 0) {
+		while (!queue.isEmpty() && retList.size() < numSuggestions && triesCounter > 0) {
 			for (String neighbor : distanceOne(queue.remove(), true))
 				if (!visited.contains(neighbor)) {
 					visited.add(neighbor);
 					queue.add(neighbor);
 					retList.add(neighbor);
 				}
-			maxTries--;
+			triesCounter--;
 		}
 
 		return retList;
