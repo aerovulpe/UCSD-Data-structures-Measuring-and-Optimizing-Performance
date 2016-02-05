@@ -3,10 +3,7 @@
  */
 package spelling;
 
-import java.io.File;
 import java.util.HashSet;
-import java.util.Scanner;
-
 
 /**
  * A class that implements the Dictionary interface with a HashSet

@@ -28,7 +28,6 @@ public class AutoCompleteDictionaryTrie implements Dictionary, AutoComplete {
 	 */
 	public boolean addWord(String word) {
 		// Implement this method.
-
 		word = word.toLowerCase();
 		TrieNode currentNode = root;
 		for (Character c : word.toCharArray()) {
@@ -39,6 +38,7 @@ public class AutoCompleteDictionaryTrie implements Dictionary, AutoComplete {
 				currentNode = child;
 		}
 
+		// Word already exists.
 		if (currentNode.endsWord())
 			return false;
 
@@ -93,7 +93,6 @@ public class AutoCompleteDictionaryTrie implements Dictionary, AutoComplete {
 		// If it is a word, add it to the completions list
 		// Add all of its child nodes to the back of the queue
 		// Return the list of completions
-
 		List<String> predictions = new ArrayList<>();
 		TrieNode stem = findTrieNode(root, prefix);
 
@@ -148,10 +147,10 @@ public class AutoCompleteDictionaryTrie implements Dictionary, AutoComplete {
 	// return numOfWords + (node.endsWord() ? 1 : 0);
 	// }
 
-	private TrieNode findTrieNode(TrieNode parent, String key) {
-		if (parent == null || key.isEmpty())
-			return parent;
+	private TrieNode findTrieNode(TrieNode node, String key) {
+		if (node == null || key.isEmpty())
+			return node;
 
-		return findTrieNode(parent.getChild(key.charAt(0)), key.substring(1));
+		return findTrieNode(node.getChild(key.charAt(0)), key.substring(1));
 	}
 }

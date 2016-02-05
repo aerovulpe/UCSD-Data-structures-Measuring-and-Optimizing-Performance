@@ -11,21 +11,12 @@ import java.util.Set;
  */
 class TrieNode {
 	private TrieNode parent;
-	private HashMap<Character, TrieNode> children;
-	private char c; // Maybe omit for space
+	private HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
+	private char c;
 	private boolean isWord;
 
-	/** Create a new TrieNode */
+	/** Create a root TrieNode */
 	public TrieNode() {
-		children = new HashMap<Character, TrieNode>();
-		isWord = false;
-	}
-
-	/** Create a new TrieNode given a text String to store in it */
-	public TrieNode(TrieNode parent, char c) {
-		this();
-		this.parent = parent;
-		this.c = c;
 	}
 
 	/**
@@ -52,11 +43,12 @@ class TrieNode {
 	 *         trie.
 	 */
 	public TrieNode insert(Character c) {
-		if (children.containsKey(c)) {
+		if (children.containsKey(c))
 			return null;
-		}
 
-		TrieNode next = new TrieNode(this, c);
+		TrieNode next = new TrieNode();
+		next.parent = this;
+		next.c = c;
 		children.put(c, next);
 		return next;
 	}
@@ -71,7 +63,7 @@ class TrieNode {
 			text.append(stem.c);
 			stem = stem.parent;
 		}
-		// Exclude 'u\0000' @ root
+		// Reverse text & exclude 'u\0000' @ root
 		return text.reverse().substring(1);
 	}
 
